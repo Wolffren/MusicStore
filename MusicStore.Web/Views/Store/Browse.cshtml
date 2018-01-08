@@ -1,0 +1,42 @@
+﻿@model PaginatedList<AlbumOverviewVm>
+
+
+<h2 class="text-center">Browse albums by Genre:</h2>
+<div class ="row  col-sm-offset-2  col-xs-offset-2 col-lg-offset-1" id="album-list">
+    @foreach (var album in Model)
+    {
+        <div class="col-lg-3 col-md-3 col-sm-5 col-xs-6" id="albums">
+            <a asp-controller="Store" asp-action="Details" asp-route-id="@album.AlbumId">
+                @if (!string.IsNullOrEmpty(album.AlbumArtUrl))
+                {
+                    <img alt="@album.Title" src="@Url.Content(@album.AlbumArtUrl)" />
+                }
+                <div id="linkToAlbum">
+                <h5 class="control-label">@album.Title</h5>
+                </div>
+            </a>
+        </div>
+    }
+    
+</div>
+<div class="row text-center" id="navigationBut">
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="Browse"
+       asp-route-genre="@ViewData["CurrentGenre"]"
+       asp-route-page="@(Model.PageIndex - 1)"
+       class="btn-lg btn-primary @prevDisabled">
+        Previous
+    </a>
+
+    <a asp-action="Browse"
+       asp-route-genre="@ViewData["CurrentGenre"]"
+       asp-route-page="@(Model.PageIndex + 1)"   
+       class="btn-lg btn-primary @nextDisabled">
+        Next
+    </a>
+</div>
+

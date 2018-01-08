@@ -1,0 +1,29 @@
+﻿@model AlbumDetailsVm
+@{
+    ViewBag.Title = "Album - " + Model.Title;
+}
+
+
+<div class="col-md-5 col-md-offset-3">
+    <h2>@Model.Title</h2>
+    <p>
+        <img alt="@Model.Title" src="@Url.Content(@Model.AlbumArtUrl)" class="albumImage" />
+    </p>
+
+    <div id="album-details">
+        <p>
+            <em>Genre:</em>
+            @Model.Genre.Name
+        </p>
+        <p>
+            <em>Artist:</em>
+            @Model.Artist.Name
+        </p>
+        <p>
+            <em>Price:</em>
+            <label>@Model.Price</label>
+        </p>
+        <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@Model.AlbumId" class="btn-lg btn-success">Add to cart</a>
+
+    </div>
+</div>

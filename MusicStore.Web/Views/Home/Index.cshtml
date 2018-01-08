@@ -1,0 +1,28 @@
+﻿@model IEnumerable<AlbumOverviewVm>
+
+
+<div class="container" id="album-list">
+
+    <h2 class="text-center">Top selling Albums:</h2>
+        @foreach (var album in Model)
+        {
+            <div class="row" id="albumsell">
+                <div id="cover" class="col-md-6">
+                    <a asp-controller="Store" asp-action="Details" asp-route-id="@album.AlbumId" >
+
+                        <img alt="@album.Title" src="@Url.Content(@album.AlbumArtUrl)"/>
+                        <div>
+                            <h2 id="getit">Get It Now</h2>
+                        </div>
+                    </a>
+                
+                </div>
+                <div class="col-md-6" id="descript">
+                    <h2>@album.Title</h2>
+                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+                </div>
+            </div>
+          
+        }
+
+</div>

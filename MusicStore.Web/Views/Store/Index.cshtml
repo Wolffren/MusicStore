@@ -1,0 +1,22 @@
+﻿@model IEnumerable<GenreAlbumsVm>
+
+@{
+    ViewBag.Title = "Store";
+}
+
+
+<h3 class="titleGenre text-center">Browse albums by Genre:</h3>
+
+<div class="row col-md-offset-1 col-xs-offset-3">
+    @foreach (var genre in Model)
+    {
+        <div class="col-md-3 col-md-offset-4 text-center col-xs-7 col-sm-4" id="genreIcon">   
+            
+            <a asp-controller="Store" asp-action="Browse" asp-route-genre="@genre.Name" class="info">
+                            <img class="img-responsive col-md-offset-3" src="@Url.Content(@genre.GenreIconUrl)" alt="@genre.Name">
+                        <h3>@genre.Name</h3>
+                            </a>
+
+            </div>
+    }
+</div>
