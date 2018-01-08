@@ -11,6 +11,5 @@ namespace MusicStore.Services.Interfaces
     public interface ICheckoutService
     {
         Task ProcessOrder(ShoppingCart cart,OrderInputVm order);
-        Task<bool> CheckIfValid(int id, string userName);
     }
 }

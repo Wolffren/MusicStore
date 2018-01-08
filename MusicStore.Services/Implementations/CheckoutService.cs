@@ -32,10 +32,5 @@ namespace MusicStore.Services.Implementations
 
             await this._db.SaveChangesAsync();
         }
-
-        public async Task<bool> CheckIfValid(int id,string userName)
-        {
-            return await this._db.Orders.AnyAsync(o => o.OrderId == id && o.Username == userName);
-        }
     }
 }

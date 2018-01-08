@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace MusicStore.Web.Controllers
 {
     using Data;
+    using Microsoft.AspNetCore.Authorization;
+    using Models.Entity;
     using Models.ViewModels.Order;
     using MusicStore.Services.Interfaces;
 
@@ -31,8 +33,9 @@ namespace MusicStore.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> AddressAndPayment(OrderInputVm order)
-        {
+        { 
             if (!ModelState.IsValid)
             {
                 return View(order);
@@ -50,21 +53,10 @@ namespace MusicStore.Web.Controllers
 
         //Get: /Checkout/Complete
 
-        public async Task<IActionResult> Complete(int id)
+        public  IActionResult Complete(int id)
         {
-            var userName = HttpContext.User.Identity.Name;
+            return View(id);
 
-            // Validate customer owns this order
-            bool isValid = await this._service.CheckIfValid(id,userName);
-
-            if (isValid)
-            {
-                return View(id);
-            }
-            else
-            {
-                return View("Error");
-            }
         }
     }
 }
